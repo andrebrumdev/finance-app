@@ -9,12 +9,15 @@ class MyApp extends StatelessWidget{
   @override
   Widget build( BuildContext context){
     return MaterialApp(
-      title: 'First Teste',
+      title: 'Brum Finances',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'App Finanças'),
+      initialRoute: '/',
+      routes:{
+        '/':(context) => MyHomePage(title: 'App Finanças'),
+      }
     );
   }
 }

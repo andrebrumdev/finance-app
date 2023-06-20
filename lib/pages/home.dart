@@ -1,4 +1,6 @@
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 class MyHomePage extends StatefulWidget{
   MyHomePage({Key key = const ValueKey('default'), this.title = ''}) : super(key: key);
@@ -8,38 +10,42 @@ class MyHomePage extends StatefulWidget{
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>{
-  int _counter = 0;
+class CardBank extends StatelessWidget{
+  const CardBank({
+    super.key,
+    banco
+  });
 
-  void _incrementCounter(){
-    setState(() {
-      _counter++;
-    });
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          // Image.network("https://www.google.com/s2/favicons?domain=${domain}&sz=${size}")
+        ]
+      ),
+    );
   }
+}
+
+class _MyHomePageState extends State<MyHomePage>{
 
   @override
   Widget build(BuildContext context){
+    // final response = http.get("https://raw.githubusercontent.com/guibranco/BancosBrasileiros/main/data/bancos.json");
+    // Map<String, dynamic> _listOfBank = jsonDecode(awairesponse);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("u have a number:"),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ],
+        child: ListView(
+          // children: _listOfBank.map((e) => CardBank(
+          //   banco: e,
+          //   key: e.COMPE,
+          // ))
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Incrementar',
-        child: Icon(Icons.add),
       ),
     );
   }
