@@ -6,7 +6,7 @@
 
 ## 💡 Ideia Base
 
-### 🧑‍🦲 Entidades
+### 🧑 Entidades
 
 * 📝 Budget
     * Registrar Receitas
