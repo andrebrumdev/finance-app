@@ -1,7 +1,5 @@
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:flutter/services.dart';
 
 class Banco{
   final Uri url;
@@ -48,9 +46,8 @@ void main() async{
 }
 
 Future getBancos() async{
-  // var url = Uri.tryParse('https://raw.githubusercontent.com/guibranco/BancosBrasileiros/main/data/bancos.json');
-  // var response = await http.get( url! ).body;
-  var response = await rootBundle.loadString('assets/database/bancos.json');
+  var url = Uri.tryParse('https://raw.githubusercontent.com/andrebrumdev/finance-app/main/assets/database/bancos.json');
+  var response = await http.get( url! ).then((value) => value.body);
   var json =  jsonDecode(response);
   var list = json as List;
   List<Banco> banks = [];
