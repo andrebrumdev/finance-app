@@ -18,4 +18,14 @@ class BankRepository {
     return banks;
   }
 
+  Future<List<BancoModel>> getBanks(filter) async {
+    var json = await dio.get(url, queryParameters: {"filter": filter}).then((value) => value.data);
+    final list = json['json'] as List;
+    final List<BancoModel> banks = [];
+    for (var bank in list) {
+      banks.add(new BancoModel.fromJSON(bank)); 
+    }
+    return banks;
+  }
+
 }

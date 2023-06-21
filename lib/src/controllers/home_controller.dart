@@ -21,6 +21,19 @@ class HomeController {
       state.value = HomeState.error;
     }
   }
+
+  Future filter(_filter) async{
+    state.value = HomeState.loading;
+    try{
+      banks = await _repository.getBanks(_filter);
+      state.value = HomeState.sucess;
+    }
+    catch(e){
+      print(e);
+      state.value = HomeState.error;
+    }
+  }
+
 }
 
 enum HomeState { start , loading , sucess , error }
