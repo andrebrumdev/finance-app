@@ -6,12 +6,11 @@ import 'package:finance_app_flutter/src/models/bank_model.dart';
 
 class BankRepository {
   final dio = Dio();
-  final url = 'https://raw.githubusercontent.com/andrebrumdev/finance-app/main/assets/database/bancos.json';
+  final url = 'http://192.168.0.100:4000/bank';
 
   Future<List<BancoModel>> getAllBanks() async{
-    var json = await dio.get( url );
-    final list = jsonDecode(json.data) as List;
-    
+    var json = await dio.get(url).then((value) => value.data);
+    final list = json['json'] as List;
     final List<BancoModel> banks = [];
     for (var bank in list) {
       banks.add(new BancoModel.fromJSON(bank)); 

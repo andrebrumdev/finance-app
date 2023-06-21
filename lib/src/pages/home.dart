@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:finance_app_flutter/src/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -25,27 +29,39 @@ class CardBank extends StatelessWidget {
 
 class _HomePageState extends State<HomePage> {
   final banksController = HomeController();
-
   _success() {
+    _launchURL(_url) async {
+      if (await launchUrl(_url)) {
+        await launchUrl(_url);
+      } else {
+        throw 'Could not launch $_url';
+      }
+    }
     return ListView.builder(
       itemCount: banksController.banks.length,
       itemBuilder: (context, index) {
         final bank = banksController.banks[index];
-        final icon = bank.getIcon();
-        print(icon.toString());
-
+        Uint8List decodedBytes  = base64Decode(bank.icon ?? '');
         return ListBody(
           children: <Widget>[
-            Image.network(
-              icon.toString(),
+            Image.memory(
+              decodedBytes ,
               width: 256,
               height: 256,
-              loadingBuilder: (context, child, loadingProgress) =>
-                  Center(child: CircularProgressIndicator()),
               errorBuilder: (context, error, stackTrace) =>
                   Text('Falha ao carregar'),
             ),
-            Text(bank.name),
+            InkWell(
+              onTap: ()=>{_launchURL(bank.url)},
+              child: Text(
+                bank.name,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
           ],
         );
       },
