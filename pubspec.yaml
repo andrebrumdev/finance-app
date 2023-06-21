@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   dio: ^5.2.1+1
+  http: ^1.0.0
   flutter:
     sdk: flutter
 

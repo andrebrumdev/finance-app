@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget{
       ),
       initialRoute: '/',
       routes:{
-        '/':(context) => MyHomePage(title: 'App Finanças'),
+        '/':(context) => HomePage(title: 'App Finanças'),
       }
     );
   }

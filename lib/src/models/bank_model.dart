@@ -30,7 +30,10 @@ class BancoModel{
     };
   }
 
-  getIcon({size=226}){
-    return this.url.isAbsolute?'https://www.google.com/s2/favicons?domain=${this.url}&sz=${size}':false;
+  String getIcon({int size = 226}) {
+    final apiUrl = this.url.isAbsolute
+        ? 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this.url}&size=16'
+        : '';
+    return apiUrl;
   }
 }

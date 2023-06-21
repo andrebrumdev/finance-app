@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:finance_app_flutter/src/models/bank_model.dart';
 
@@ -8,7 +10,7 @@ class BankRepository {
 
   Future<List<BancoModel>> getAllBanks() async{
     var json = await dio.get( url );
-    final list = json.data as List;
+    final list = jsonDecode(json.data) as List;
     
     final List<BancoModel> banks = [];
     for (var bank in list) {

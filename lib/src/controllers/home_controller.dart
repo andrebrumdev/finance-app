@@ -1,22 +1,24 @@
 import 'package:finance_app_flutter/src/models/bank_model.dart';
 import 'package:finance_app_flutter/src/repositories/bank_repository.dart';
+import 'package:flutter/material.dart';
 
 class HomeController {
   List<BancoModel> banks = [];
   final BankRepository _repository;
-  HomeState state = HomeState.start;
+  final state = ValueNotifier<HomeState>(HomeState.start);
   
   HomeController([BankRepository? repository])
   : _repository = repository ?? BankRepository();
 
   Future start() async{
-    state = HomeState.loading;
+    state.value = HomeState.loading;
     try{
       banks = await _repository.getAllBanks();
-      state = HomeState.sucess;
+      state.value = HomeState.sucess;
     }
     catch(e){
-      state = HomeState.error;
+      print(e);
+      state.value = HomeState.error;
     }
   }
 }
