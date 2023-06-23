@@ -1,5 +1,4 @@
 import 'package:finance_app_flutter/src/pages/home.dart';
-import 'package:finance_app_flutter/src/pages/hometeste.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget{
       ),
       initialRoute: '/',
       routes:{
-        // '/':(context) => HomePage(title: 'App Finanças'),
-        '/':(context) => DropDownCustom(title: 'App Finanças'),
+        '/':(context) => HomePage(title: 'App Finanças'),
       }
     );
   }
